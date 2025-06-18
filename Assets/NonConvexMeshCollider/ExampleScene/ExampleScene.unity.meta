@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d7fda0b8be4407140a2c4ac7046322fa
+timeCreated: 1490949357
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 84867
+  packageName: Non Convex Mesh Collider
+  packageVersion: 1.0
+  assetPath: Assets/NonConvexMeshCollider/ExampleScene/ExampleScene.unity
+  uploadId: 171591

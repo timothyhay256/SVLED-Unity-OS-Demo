@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ee417f67bef96f548903ea1f9ea67316
+timeCreated: 1491257923
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 84867
+  packageName: Non Convex Mesh Collider
+  packageVersion: 1.0
+  assetPath: Assets/NonConvexMeshCollider/ExampleScene/ChainRingPhysMat.physicMaterial
+  uploadId: 171591

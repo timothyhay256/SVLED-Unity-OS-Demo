@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 847e74086e37f854fae6fa8e3f91b912
+timeCreated: 1476049452
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 84867
+  packageName: Non Convex Mesh Collider
+  packageVersion: 1.0
+  assetPath: Assets/NonConvexMeshCollider/ExampleScene/Blueprint.mat
+  uploadId: 171591

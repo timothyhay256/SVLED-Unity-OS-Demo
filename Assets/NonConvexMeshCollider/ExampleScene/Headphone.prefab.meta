@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 357164d07d1a21d429aa4a38ef40abc1
+timeCreated: 1490949397
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 84867
+  packageName: Non Convex Mesh Collider
+  packageVersion: 1.0
+  assetPath: Assets/NonConvexMeshCollider/ExampleScene/Headphone.prefab
+  uploadId: 171591

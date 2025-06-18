@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: fa733f2635e033a47a60553c07116e82
+timeCreated: 1488902826
+licenseType: Store
+TextScriptImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 84867
+  packageName: Non Convex Mesh Collider
+  packageVersion: 1.0
+  assetPath: Assets/NonConvexMeshCollider/ReadMe.txt
+  uploadId: 171591
