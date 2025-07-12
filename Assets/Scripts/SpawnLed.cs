@@ -20,7 +20,7 @@ public class SpawnLed : MonoBehaviour
     private GameObject newLed;
     IPAddress localAdd;
     private bool newPos = false;
-    private int index = 0;
+    public int index = 0;
     private bool endReceive = false;
     private bool restart = false;
     TcpListener listener;

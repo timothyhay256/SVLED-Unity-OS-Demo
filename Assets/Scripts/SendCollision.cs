@@ -18,11 +18,13 @@ public class SendCollision : MonoBehaviour
     public int index;
     [Tooltip("Uses Physics.checkSphere instead of collision/trigger enter.")]
     public bool useCheckSphereInstead = false;
+    [Tooltip("Only used when Use Check Sphere Instead is true")]
+    public LayerMask interactableLayerMask;
 
     IPAddress localAdd;
     private bool collision = false; // Triggers sending the buffer and resetting to false. Set by ColorEnter and Exit
     private bool colActive = false; // Used to track if there is already a collision active when using useCheckSphereInstead
-    private bool exit;
+    public bool exit;
     private int activeR;
     private int activeG;
     private int activeB;
@@ -35,6 +37,8 @@ public class SendCollision : MonoBehaviour
     IPEndPoint ep;
 
     bool running;
+
+    private readonly List<Collider> filtered = new();
 
     void Start()
     {
@@ -49,33 +53,27 @@ public class SendCollision : MonoBehaviour
 
     void Update()
     {
-        if (useCheckSphereInstead)
+        if (!useCheckSphereInstead) return;
+
+        filtered.Clear();
+        Collider[] hits = Physics.OverlapSphere(transform.position, worldRadius, interactableLayerMask);
+
+        foreach (Collider col in hits)
         {
-            Collider[] hits = Physics.OverlapSphere(transform.position, worldRadius);
-
-            List<Collider> filtered = new();
-
-            foreach (Collider col in hits)
-            {
-                if (!col.CompareTag("LED"))
-                    filtered.Add(col);
-            }
-
-            Collider[] filteredHits = filtered.ToArray();
-
-            // TODO: Manage multiple colliders somehow
-            if (filteredHits.Length > 0 && !colActive)
+            // If we find any valid collider, trigger enter event and return early
+            if (!colActive)
             {
                 colActive = true;
-                ColorEnterEvent(filteredHits[0].gameObject);
-                Debug.Log("Got collision");
+                ColorEnterEvent(col.gameObject);
             }
-            else if (filteredHits.Length == 0 && colActive)
-            {
-                colActive = false;
-                ColorExitEvent();
-                Debug.Log("Exiting collision");
-            }
+            return; // Only care about the first valid hit
+        }
+
+        // If we reached here, nothing valid was found
+        if (colActive)
+        {
+            colActive = false;
+            ColorExitEvent();
         }
     }
 
@@ -123,7 +121,6 @@ public class SendCollision : MonoBehaviour
             {
                 collisionColor = meshRenderer.material.color;
                 found = true;
-                Debug.Log("Found meshRenderer");
             }
             else
             {

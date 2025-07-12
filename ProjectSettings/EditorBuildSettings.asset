@@ -4,7 +4,28 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/CatchObject.unity
+    guid: 4f5363b4c26ba5ba49f27699fc79297e
+  - enabled: 1
+    path: Assets/Scenes/Pong.unity
+    guid: 05f27c5e362324bdaaba9b76fbad8c39
+  - enabled: 1
+    path: Assets/Scenes/HandDemo.unity
+    guid: 6f1511103d413ed719373934fcba76f6
+  - enabled: 1
+    path: Assets/Scenes/SendHandInfo.unity
+    guid: 72ef6642e4c8a350c91ccfe415946147
+  - enabled: 1
+    path: Assets/Scenes/KillTheObject.unity
+    guid: 015f2a6a86624725984fe457bcc4d50c
+  - enabled: 1
+    path: Assets/Scenes/Paint.unity
+    guid: ca8bf6c0e5d0d3415be54f69e836bb7e
+  - enabled: 1
+    path: Assets/Scenes/Music Reactive.unity
+    guid: a77921461e527bc74999beaed41ce7d5
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 289c1b55c9541489481df5cc06664110, type: 3}
   m_UseUCBPForAssetBundles: 0
