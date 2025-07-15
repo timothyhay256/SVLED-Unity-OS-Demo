@@ -15,6 +15,9 @@ public class AddPaddle : MonoBehaviour
 
     public GameObject noContact;
 
+    public GameObject left;
+    public GameObject paintSystem;
+
     public float scale = 1.0f;
     public bool sendPos = true;
 
@@ -39,13 +42,15 @@ public class AddPaddle : MonoBehaviour
         leftHand = noContact.transform.GetChild(0).GetChild(0).gameObject;
         rightHand = noContact.transform.GetChild(1).GetChild(0).gameObject;
 
-        GameObject left = Instantiate(leftPaddle, leftHand.transform, true);
-        left.transform.localPosition = new Vector3(-.0028f, .082f, -.077f); // Derived from just manually moving the paddle until it was positioned nicely
-        left.transform.localEulerAngles = new Vector3(103f, -40f, -72.8f);
+        left = Instantiate(leftPaddle, leftHand.transform, true);
+        left.transform.localPosition = new Vector3(.007f, .00029f, -.0567f); // Derived from just manually moving the paddle until it was positioned nicely
+        left.transform.localEulerAngles = new Vector3(45f, -157f, -139.425f);
+
+        paintSystem.GetComponent<PaintSystem>().brushElement = left.transform.GetChild(0).gameObject;
 
         GameObject right = Instantiate(rightPaddle, rightHand.transform, true);
-        right.transform.localPosition = new Vector3(-.0266f, -0.0242f, -.1222f);
-        right.transform.localEulerAngles = new Vector3(-116.6f, 96.275f, 50.14f);
+        right.transform.localPosition = new Vector3(0.0004f, 0.0109f, -.0056f);
+        right.transform.localEulerAngles = new Vector3(-121.6f, 143.275f, -57.14f);
     }
 
     void Update()

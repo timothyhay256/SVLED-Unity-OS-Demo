@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class LoadScene : MonoBehaviour
 {
@@ -59,11 +60,16 @@ public class LoadScene : MonoBehaviour
 
     public void ClearLEDS()
     {
-        int i = 0;
-        foreach (Transform child in ledHolder.transform)
+        Time.timeScale = 1f; // Resume the game
+        if (pauseUI != null)
+            pauseUI.SetActive(false);
+
+        ledHolder.transform.GetChild(0).gameObject.GetComponent<SendCollision>().clearLoop = true;
+
+        for (int i = 0; i < ledHolder.transform.childCount; i++)
         {
-            if (i > 0) child.GetComponent<SendCollision>().exit = true;
-            i++;
+            ledHolder.transform.GetChild(i).GetComponent<SendCollision>().ApplyColor(Color.white);
+            ledHolder.transform.GetChild(i).GetComponent<SendCollision>().collisionStack.Clear();
         }
     }
 }
