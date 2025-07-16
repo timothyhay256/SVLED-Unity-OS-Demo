@@ -5,6 +5,7 @@ public class SpawnObjects : MonoBehaviour
 {
     public bool enabled = true;
     public GameObject bullet;
+    public GameObject manager;
     public float spawnAreaHeight = 5f;
     public float spawnAreaWidth = 5f;
     public float spawnAreaOffset = 0f;
@@ -22,7 +23,7 @@ public class SpawnObjects : MonoBehaviour
         // Debug.Log(Mathf.Max(0f, spawnRate - 0.1f * scoreCount));
 
         timer += Time.deltaTime;
-        if (timer >= Mathf.Max(.5f, spawnRate - 0.10f * scoreCount))
+        if (timer >= Mathf.Max(.5f, spawnRate - 0.06f * scoreCount))
         {
             timer = 0f;
             SpawnBullet();
@@ -37,13 +38,18 @@ public class SpawnObjects : MonoBehaviour
 
         Vector3 spawnPosition = new Vector3(center.x, center.y + randomY, center.z + randomZ);
 
-        var bulletPartHolder = Instantiate(bullet, spawnPosition, Quaternion.identity).transform.GetChild(0);
-        var speed = bulletPartHolder.GetComponent<RotateAndMoveLeft>().moveSpeed;
+        GameObject bulletInstance = Instantiate(bullet, spawnPosition, Quaternion.identity, manager.transform);
 
-        var newSpeed = speed + 0.02f * scoreCount;
+        Transform bulletPartHolder = bulletInstance.transform.GetChild(0);
+
+        float speed = bulletPartHolder.GetComponent<RotateAndMoveLeft>().moveSpeed;
+        float newSpeed = speed + 0.01f * scoreCount;
+
         Debug.Log("newspeed");
         Debug.Log(newSpeed);
+
         bulletPartHolder.GetComponent<RotateAndMoveLeft>().moveSpeed = newSpeed;
+
     }
 
     void OnDrawGizmos()

@@ -9,11 +9,15 @@ public class BulletCollision : MonoBehaviour
     public TMP_Text deaths;
 
     public SpawnObjects spawner;
+    public GameObject outwardAnim;
+    public GameObject outwardAnimDeath;
 
     void Start()
     {
         score = GameObject.Find("Score").GetComponent<TMP_Text>();
         deaths = GameObject.Find("Deaths").GetComponent<TMP_Text>();
+        outwardAnim = GameObject.Find("Exploding Sphere");
+        outwardAnimDeath = GameObject.Find("Exploding Evil");
 
         spawner = GameObject.Find("Object Spawner").GetComponent<SpawnObjects>();
     }
@@ -30,6 +34,8 @@ public class BulletCollision : MonoBehaviour
             spawner.scoreCount = Math.Max(0, spawner.scoreCount - 1);
             score.text = "Score: " + spawner.scoreCount;
 
+            GameObject effect = Instantiate(outwardAnimDeath, transform.position, transform.rotation);
+            effect.GetComponent<ExpandingSphereEffectSingleColor>().enabled = true;
             Destroy(gameObject.transform.parent.gameObject);
         }
         else if (name.Contains("Left") || name.Contains("Right") || name.Contains("Thumb") || name.Contains("Index") || name.Contains("Middle") || name.Contains("Ring") || name.Contains("Pinky"))
@@ -37,6 +43,8 @@ public class BulletCollision : MonoBehaviour
             spawner.scoreCount++;
             score.text = "Score: " + spawner.scoreCount;
 
+            GameObject effect = Instantiate(outwardAnim, transform.position, transform.rotation);
+            effect.GetComponent<ExpandingSphereEffect>().enabled = true;
             Destroy(gameObject.transform.parent.gameObject);
         }
     }

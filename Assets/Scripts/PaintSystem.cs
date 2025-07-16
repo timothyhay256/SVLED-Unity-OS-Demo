@@ -1,5 +1,6 @@
 using UnityEngine;
 using Leap;
+using System.Collections;
 
 public class PaintSystem : MonoBehaviour
 {
@@ -11,10 +12,12 @@ public class PaintSystem : MonoBehaviour
 
     public Color activeColor;
     private Hand left;
+    private Hand right;
 
     public float cycleSpeed;
 
     private bool pinchActive;
+    private bool blockClear = false;
     private float hue = 0f;
     void Start()
     {
@@ -25,6 +28,7 @@ public class PaintSystem : MonoBehaviour
     void Update()
     {
         left = Hands.Provider.GetHand(Chirality.Left);
+        right = Hands.Provider.GetHand(Chirality.Right);
 
         if (left != null)
         {
@@ -55,18 +59,22 @@ public class PaintSystem : MonoBehaviour
             brushElement.GetComponent<Renderer>().material.color = activeColor;
         }
 
-        if (pinchIndexRight.IsPinching)
+        if (pinchIndexRight.IsPinching && !blockClear && right != null)
         {
-            ledHolder.transform.GetChild(0).gameObject.GetComponent<SendCollision>().clearLoop = true;
-
-            for (int i = 0; i < ledHolder.transform.childCount; i++)
-            {
-                ledHolder.transform.GetChild(i).GetComponent<SendCollision>().ApplyColor(Color.white);
-                ledHolder.transform.GetChild(i).GetComponent<SendCollision>().collisionStack.Clear();
-                ledHolder.transform.GetChild(i).GetComponent<SendCollision>().activeColliders.Clear();
-                ledHolder.transform.GetChild(i).GetComponent<SendCollision>().brushColor = null;
-                ledHolder.transform.GetChild(i).GetComponent<SendCollision>().sendClear = true;
-            }
+            Debug.Log("Clearing LEDS");
+            StartCoroutine(clearLEDS());
+            blockClear = true;
         }
+    }
+
+    IEnumerator clearLEDS() {
+        ledHolder.transform.GetChild(1).gameObject.GetComponent<SendCollision>().clearLoop = true;
+
+        for (int i = 0; i < ledHolder.transform.childCount; i++)
+        {
+            ledHolder.transform.GetChild(i).GetComponent<SendCollision>().ClearSingleLED();
+        }
+        yield return new WaitForSeconds(3.0f);
+        blockClear = false;
     }
 }

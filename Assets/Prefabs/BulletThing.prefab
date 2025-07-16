@@ -172,6 +172,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: {fileID: 0}
   deaths: {fileID: 0}
+  spawner: {fileID: 0}
+  outwardAnim: {fileID: 6890254637276997620, guid: c1c80bb435e3e8b2bb80a77514122f78, type: 3}
 --- !u!54 &1215906463784326593
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -179,10 +181,10 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2056473106283802295}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}

@@ -60,16 +60,17 @@ public class LoadScene : MonoBehaviour
 
     public void ClearLEDS()
     {
+        Debug.Log("Clearing LEDs");
+        
         Time.timeScale = 1f; // Resume the game
         if (pauseUI != null)
             pauseUI.SetActive(false);
 
-        ledHolder.transform.GetChild(0).gameObject.GetComponent<SendCollision>().clearLoop = true;
+        ledHolder.transform.GetChild(1).gameObject.GetComponent<SendCollision>().clearLoop = true;
 
         for (int i = 0; i < ledHolder.transform.childCount; i++)
         {
-            ledHolder.transform.GetChild(i).GetComponent<SendCollision>().ApplyColor(Color.white);
-            ledHolder.transform.GetChild(i).GetComponent<SendCollision>().collisionStack.Clear();
+            ledHolder.transform.GetChild(i).GetComponent<SendCollision>().ClearSingleLED();
         }
     }
 }
