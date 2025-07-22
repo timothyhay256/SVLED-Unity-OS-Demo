@@ -18,7 +18,9 @@ public class AddPaddle : MonoBehaviour
     public GameObject left;
     public GameObject paintSystem;
 
-    public float scale = 1.0f;
+    public float scale_x = 1.0f;
+    public float scale_y = 1.0f;
+    public float scale_z = 1.0f;
     public bool sendPos = true;
 
     UdpClient client;
@@ -53,14 +55,19 @@ public class AddPaddle : MonoBehaviour
         right.transform.localEulerAngles = new Vector3(-121.6f, 143.275f, -57.14f);
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (sendPos)
         {
             if (leftHand == null)
                 return;
 
-            Vector3 scaledPos = leftHand.transform.position * scale;
+            Vector3 pos = leftHand.transform.position;
+            Vector3 scaledPos = new Vector3(
+                pos.x * scale_x,
+                pos.y * scale_y,
+                pos.z * scale_z
+            );
 
             // Debug.Log($"Sending: {scaledPos}");
 
